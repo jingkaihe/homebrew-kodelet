@@ -28,6 +28,6 @@ class Kodelet < Formula
   end
 
   test do
-    assert_match "kodelet version", shell_output("#{bin}/kodelet version")
+    assert_match version.to_s, shell_output("#{bin}/kodelet version")
   end
 end
