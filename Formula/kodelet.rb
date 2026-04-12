@@ -1,25 +1,25 @@
 class Kodelet < Formula
   desc "Lightweight agentic SWE Agent for software engineering and production operations"
   homepage "https://github.com/jingkaihe/kodelet"
-  version "0.3.35-beta"
+  version "0.3.37-beta"
   
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/jingkaihe/kodelet/releases/download/v0.3.35-beta/kodelet-darwin-arm64"
-      sha256 "e0bd9f721d0917d1669d97d6cfb3b4165ef5dc54daa03b69853d7c21870b6c6e"
+      url "https://github.com/jingkaihe/kodelet/releases/download/v0.3.37-beta/kodelet-darwin-arm64"
+      sha256 "c19e043e97f72bc4fda61089f8f6c23d266066d6bb070c97bb1c15df7421fc4b"
     else
-      url "https://github.com/jingkaihe/kodelet/releases/download/v0.3.35-beta/kodelet-darwin-amd64"
-      sha256 "09aa338c05d81f32840c4364851dc54e0ea3833dfe3df0b727fc2bfd18cfef7f"
+      url "https://github.com/jingkaihe/kodelet/releases/download/v0.3.37-beta/kodelet-darwin-amd64"
+      sha256 "715fb03de3189d6dc6599a78117fe8832ddc60a8776650268b750a572c457dd9"
     end
   end
   
   on_linux do
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/jingkaihe/kodelet/releases/download/v0.3.35-beta/kodelet-linux-arm64"
-      sha256 "152485ba68439e3b1c6a5789fe8a1653010b2e48b8c8dfed467d21c4370e4c89"
+      url "https://github.com/jingkaihe/kodelet/releases/download/v0.3.37-beta/kodelet-linux-arm64"
+      sha256 "b6c7c77499dfe213a156a6df7cfb929ac015492cd86a0b1e6e8074df3ec095ad"
     else
-      url "https://github.com/jingkaihe/kodelet/releases/download/v0.3.35-beta/kodelet-linux-amd64"
-      sha256 "08597a502cc700f214237fafc083ef27276555e56025e40893eb825bbfab0be2"
+      url "https://github.com/jingkaihe/kodelet/releases/download/v0.3.37-beta/kodelet-linux-amd64"
+      sha256 "089b2dd60eddc5ecf5f1434c89f88c9fe52b4977ba2a7dbe8209ac9232f3d931"
     end
   end
 
