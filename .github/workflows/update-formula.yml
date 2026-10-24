@@ -1,4 +1,4 @@
-name: Update Kodelet Formula
+name: Update Kodelet Formulas
 
 on:
   repository_dispatch:
@@ -44,52 +44,47 @@ jobs:
 
           # Download binaries for all platforms
           echo "Downloading kodelet binaries for version v$VERSION..."
-          
-          for asset in kodelet-darwin-amd64 kodelet-darwin-arm64 kodelet-linux-amd64 kodelet-linux-arm64; do
-            echo "Downloading $asset..."
-            if gh release download "v$VERSION" --repo jingkaihe/kodelet --pattern "$asset"; then
-              echo "Downloaded $asset successfully"
-              # Calculate SHA256
-              sha256=$(sha256sum "$asset" | cut -d' ' -f1)
-              env_var_name=$(echo "$asset" | tr '[:lower:]-' '[:upper:]_')
-              echo "${env_var_name}_SHA256=$sha256" >> $GITHUB_ENV
-              echo "SHA256 for $asset: $sha256"
-            else
-              echo "Failed to download $asset"
-              exit 1
-            fi
+
+          for binary in kodelet kodelet-audio; do
+            for target in darwin-amd64 darwin-arm64 linux-amd64 linux-arm64; do
+              asset="$binary-$target"
+              echo "Downloading $asset..."
+              if gh release download "v$VERSION" --repo jingkaihe/kodelet --pattern "$asset"; then
+                sha256=$(sha256sum "$asset" | cut -d' ' -f1)
+                env_var_name=$(echo "$asset" | tr '[:lower:]-' '[:upper:]_')
+                echo "${env_var_name}_SHA256=$sha256" >> $GITHUB_ENV
+                echo "SHA256 for $asset: $sha256"
+              else
+                echo "Failed to download $asset"
+                exit 1
+              fi
+            done
           done
 
-      - name: Generate formula from template
+      - name: Generate formulas from templates
         run: |
-          # Read the template
-          template=$(cat kodelet-template.rb)
-          
-          # Replace placeholders with actual values
-          formula=$(echo "$template" | sed \
-            -e "s/{{VERSION}}/$VERSION/g" \
-            -e "s/{{SHA256_DARWIN_ARM64}}/$KODELET_DARWIN_ARM64_SHA256/g" \
-            -e "s/{{SHA256_DARWIN_AMD64}}/$KODELET_DARWIN_AMD64_SHA256/g" \
-            -e "s/{{SHA256_LINUX_ARM64}}/$KODELET_LINUX_ARM64_SHA256/g" \
-            -e "s/{{SHA256_LINUX_AMD64}}/$KODELET_LINUX_AMD64_SHA256/g")
-          
-          # Write the formula
-          echo "$formula" > Formula/kodelet.rb
-          
-          echo "Generated formula for version $VERSION"
-          cat Formula/kodelet.rb
+          for binary in kodelet kodelet-audio; do
+            prefix=$(echo "$binary" | tr '[:lower:]-' '[:upper:]_')
+            formula=$(sed "s/{{VERSION}}/$VERSION/g" "$binary-template.rb")
+            for target in DARWIN_ARM64 DARWIN_AMD64 LINUX_ARM64 LINUX_AMD64; do
+              checksum_var="${prefix}_${target}_SHA256"
+              formula=$(printf '%s\n' "$formula" | sed "s/{{SHA256_$target}}/${!checksum_var}/g")
+            done
+            printf '%s\n' "$formula" > "Formula/$binary.rb"
+            echo "Generated $binary formula for version $VERSION"
+          done
 
       - name: Commit and push changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           
-          git add Formula/kodelet.rb
+          git add Formula/kodelet.rb Formula/kodelet-audio.rb
           
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "Update kodelet formula to version $VERSION"
+            git commit -m "Update kodelet formulas to version $VERSION"
             git push
             echo "Formula updated to version $VERSION"
           fi

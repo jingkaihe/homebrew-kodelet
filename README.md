@@ -18,6 +18,14 @@ Or install directly:
 brew install jingkaihe/kodelet/kodelet
 ```
 
+For TUI dictation and live voice, install the optional audio helper:
+
+```bash
+brew install jingkaihe/kodelet/kodelet-audio
+```
+
+Homebrew installs the required audio libraries. macOS binaries require macOS 15 or later and Homebrew's standard installation prefix. Allow microphone access for your terminal, and enable transcription or realtime voice in Kodelet's server configuration.
+
 ## Updating
 
 To update to the latest version:
