@@ -9,15 +9,13 @@ class KodeletAudio < Formula
   depends_on "opus"
 
   on_macos do
+    depends_on arch: :arm64
     depends_on "gettext"
     depends_on macos: :sequoia
 
-    if Hardware::CPU.arm?
+    on_arm do
       url "https://github.com/jingkaihe/kodelet/releases/download/v{{VERSION}}/kodelet-audio-darwin-arm64"
       sha256 "{{SHA256_DARWIN_ARM64}}"
-    else
-      url "https://github.com/jingkaihe/kodelet/releases/download/v{{VERSION}}/kodelet-audio-darwin-amd64"
-      sha256 "{{SHA256_DARWIN_AMD64}}"
     end
   end
 

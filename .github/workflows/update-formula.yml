@@ -46,7 +46,11 @@ jobs:
           echo "Downloading kodelet binaries for version v$VERSION..."
 
           for binary in kodelet kodelet-audio; do
-            for target in darwin-amd64 darwin-arm64 linux-amd64 linux-arm64; do
+            targets="darwin-amd64 darwin-arm64 linux-amd64 linux-arm64"
+            if [ "$binary" = kodelet-audio ]; then
+              targets="darwin-arm64 linux-amd64 linux-arm64"
+            fi
+            for target in $targets; do
               asset="$binary-$target"
               echo "Downloading $asset..."
               if gh release download "v$VERSION" --repo jingkaihe/kodelet --pattern "$asset"; then
