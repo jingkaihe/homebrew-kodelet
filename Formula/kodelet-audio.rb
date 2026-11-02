@@ -1,7 +1,7 @@
 class KodeletAudio < Formula
   desc "Native audio helper for Kodelet dictation and voice conversations"
   homepage "https://github.com/jingkaihe/kodelet"
-  version "0.8.19-beta"
+  version "0.8.20-beta"
   license "MIT"
 
   depends_on "glib"
@@ -14,7 +14,7 @@ class KodeletAudio < Formula
     depends_on macos: :sequoia
 
     on_arm do
-      url "https://github.com/jingkaihe/kodelet/releases/download/v0.8.19-beta/kodelet-audio-darwin-arm64"
+      url "https://github.com/jingkaihe/kodelet/releases/download/v0.8.20-beta/kodelet-audio-darwin-arm64"
       sha256 "bb69a3750b5964a3390cea9de7f6e23e62457782654fc17fd50271a23147e825"
     end
   end
@@ -24,10 +24,10 @@ class KodeletAudio < Formula
     depends_on "alsa-lib"
 
     if Hardware::CPU.arm?
-      url "https://github.com/jingkaihe/kodelet/releases/download/v0.8.19-beta/kodelet-audio-linux-arm64"
+      url "https://github.com/jingkaihe/kodelet/releases/download/v0.8.20-beta/kodelet-audio-linux-arm64"
       sha256 "92563e69a4d007047827e22f23a40190e76d0bef41db455dfbfc6b0f599a6290"
     else
-      url "https://github.com/jingkaihe/kodelet/releases/download/v0.8.19-beta/kodelet-audio-linux-amd64"
+      url "https://github.com/jingkaihe/kodelet/releases/download/v0.8.20-beta/kodelet-audio-linux-amd64"
       sha256 "fb490fb176e6b1f2b339341e6bfd3513626c12200cf149c82c90857dc6a626fa"
     end
   end
