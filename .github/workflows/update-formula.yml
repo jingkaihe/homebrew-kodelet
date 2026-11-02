@@ -45,7 +45,7 @@ jobs:
           # Download binaries for all platforms
           echo "Downloading kodelet binaries for version v$VERSION..."
 
-          for binary in kodelet kodelet-audio; do
+          for binary in kodelet kodelet-audio kodelet-extension-mcp; do
             targets="darwin-amd64 darwin-arm64 linux-amd64 linux-arm64"
             if [ "$binary" = kodelet-audio ]; then
               targets="darwin-arm64 linux-amd64 linux-arm64"
@@ -73,6 +73,10 @@ jobs:
             for target in DARWIN_ARM64 DARWIN_AMD64 LINUX_ARM64 LINUX_AMD64; do
               checksum_var="${prefix}_${target}_SHA256"
               formula=$(printf '%s\n' "$formula" | sed "s/{{SHA256_$target}}/${!checksum_var}/g")
+              if [ "$binary" = kodelet ]; then
+                checksum_var="KODELET_EXTENSION_MCP_${target}_SHA256"
+                formula=$(printf '%s\n' "$formula" | sed "s/{{SHA256_MCP_$target}}/${!checksum_var}/g")
+              fi
             done
             printf '%s\n' "$formula" > "Formula/$binary.rb"
             echo "Generated $binary formula for version $VERSION"

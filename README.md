@@ -18,6 +18,12 @@ Or install directly:
 brew install jingkaihe/kodelet/kodelet
 ```
 
+The formula includes the native `kodelet-extension-mcp` helper for MCP server integration on macOS and Linux (Intel/AMD and ARM64). Kodelet discovers it automatically on PATH; no separate installation is needed. Verify discovery with:
+
+```bash
+kodelet extension inspect mcp
+```
+
 For TUI dictation and live voice, install the optional audio helper:
 
 ```bash
