@@ -1,44 +1,44 @@
 class Kodelet < Formula
   desc "Lightweight agentic SWE Agent for software engineering and production operations"
   homepage "https://github.com/jingkaihe/kodelet"
-  version "0.8.24-beta"
+  version "0.8.25-beta"
   
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/jingkaihe/kodelet/releases/download/v0.8.24-beta/kodelet-darwin-arm64"
-      sha256 "1568e55f9899dd406ca48e88ca6f44b286faeb19f5bf37dde608040711c8ea4d"
+      url "https://github.com/jingkaihe/kodelet/releases/download/v0.8.25-beta/kodelet-darwin-arm64"
+      sha256 "7e56c39ba51933a7d82c823f19ab44f12372db19b500c9574626546255f60a51"
 
       resource "kodelet-extension-mcp" do
-        url "https://github.com/jingkaihe/kodelet/releases/download/v0.8.24-beta/kodelet-extension-mcp-darwin-arm64"
-        sha256 "12d5972568d3990479f96387a0080edc879528729d22ceda14f9bd0dd1d10b0a"
+        url "https://github.com/jingkaihe/kodelet/releases/download/v0.8.25-beta/kodelet-extension-mcp-darwin-arm64"
+        sha256 "46602b0e9561a5661251e30b5a455182e83c9cfdf53ce2bf587a37ab93ef8c36"
       end
     else
-      url "https://github.com/jingkaihe/kodelet/releases/download/v0.8.24-beta/kodelet-darwin-amd64"
-      sha256 "c843d7c7093b12514a0da84d1c3e35a1e29ce9b76cd11f4118070ae6e9736e5d"
+      url "https://github.com/jingkaihe/kodelet/releases/download/v0.8.25-beta/kodelet-darwin-amd64"
+      sha256 "daccfaad74f8ab8deb3fe022a2d929ddeee4c796b6a8e2913c7fc9c038b81db0"
 
       resource "kodelet-extension-mcp" do
-        url "https://github.com/jingkaihe/kodelet/releases/download/v0.8.24-beta/kodelet-extension-mcp-darwin-amd64"
-        sha256 "1da3a59cef2587e0dccb8319432acf8dc2f39d435cdb4895e9110b866152bd17"
+        url "https://github.com/jingkaihe/kodelet/releases/download/v0.8.25-beta/kodelet-extension-mcp-darwin-amd64"
+        sha256 "92f5080f3b19ff3eeb5e2332aad36ab96792871a58288bcde0a5b6a1bdb30a6b"
       end
     end
   end
   
   on_linux do
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/jingkaihe/kodelet/releases/download/v0.8.24-beta/kodelet-linux-arm64"
-      sha256 "dd175184d28b044dba8d7b3d6447d34d43b1276f95f2049770d9c93fd52ff178"
+      url "https://github.com/jingkaihe/kodelet/releases/download/v0.8.25-beta/kodelet-linux-arm64"
+      sha256 "4071a285f05798a21b86bce3c2168c482d185f001ef2c9c734507552f71f9e19"
 
       resource "kodelet-extension-mcp" do
-        url "https://github.com/jingkaihe/kodelet/releases/download/v0.8.24-beta/kodelet-extension-mcp-linux-arm64"
-        sha256 "27896d8f675077edf8e29ebca9e0a27c4707b614d85dd7feb2c7b7078b940292"
+        url "https://github.com/jingkaihe/kodelet/releases/download/v0.8.25-beta/kodelet-extension-mcp-linux-arm64"
+        sha256 "babb4738b314244d64e8d742ffd7e62967fec179b251df56b0ba95d6f406ef63"
       end
     else
-      url "https://github.com/jingkaihe/kodelet/releases/download/v0.8.24-beta/kodelet-linux-amd64"
-      sha256 "8a0cfe05728f3fdf11bdc890aa439864518cc402358360eef3bcd533737451f9"
+      url "https://github.com/jingkaihe/kodelet/releases/download/v0.8.25-beta/kodelet-linux-amd64"
+      sha256 "a3c574484c29730d64a12bb2ee249dc5456fda4781060e1c034d0c95f4b212c7"
 
       resource "kodelet-extension-mcp" do
-        url "https://github.com/jingkaihe/kodelet/releases/download/v0.8.24-beta/kodelet-extension-mcp-linux-amd64"
-        sha256 "0f01869b14bded5c3233274c8bba8dee1f8ea476eb0dff5b4409b412e68a681e"
+        url "https://github.com/jingkaihe/kodelet/releases/download/v0.8.25-beta/kodelet-extension-mcp-linux-amd64"
+        sha256 "e7cdc638fdaf7bc96a2abd60d0ca9d3ff63dd9eb07b1f9b05d93125761a784c1"
       end
     end
   end
